@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Random=UnityEngine.Random;
 
 public class Soulard : MonoBehaviour
 {
@@ -49,11 +50,11 @@ public class Soulard : MonoBehaviour
 
      bool Beuverie() {
 
-        Random isAbleToMeetMiner = new Random();
+        float isAbleToMeetMiner = Random.Range(0.0f, 100.0f);
 
         double probability = 0.50;
 
-        bool result = isAbleToMeetMiner.NextDouble() < probability; 
+        bool result = isAbleToMeetMiner < probability; 
 
         if (result){
             return true;

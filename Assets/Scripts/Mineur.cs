@@ -34,7 +34,7 @@ public class Mineur : MonoBehaviour
     //the higher the value, the more tired the miner
     private int                   m_iFatigue = 0;
 
-    Manager manager;
+
 
     MineurOwnedStates state_miner = new MineurOwnedStates();
 
@@ -103,10 +103,6 @@ public class Mineur : MonoBehaviour
     void BuyAndDrinkAWhiskey(){
         m_iThirst = 0; 
         m_iMoneyInBank-=2;
-    }
-
-    void setmanager(Manager manager){
-        this.manager = manager;
     }
 
 
