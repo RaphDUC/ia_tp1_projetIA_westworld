@@ -98,7 +98,6 @@ public class Mineur : MonoBehaviour
         m_iMoneyInBank = val;
     }
     
-    void AddToWealth(int val);
 
     void BuyAndDrinkAWhiskey(){
         m_iThirst = 0; 
