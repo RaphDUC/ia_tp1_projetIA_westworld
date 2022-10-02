@@ -50,4 +50,13 @@ public class Femme : MonoBehaviour
     void Mineur_Faim(){
         femmeownedstates.setstat(2);
     }
+
+    void Mineur_Maison()
+    {
+        if (m_bCooking)
+        {
+            femmeownedstates.CookStew_serve();
+            femmeownedstates.CookStew_food_ready();
+        }
+    }
 }

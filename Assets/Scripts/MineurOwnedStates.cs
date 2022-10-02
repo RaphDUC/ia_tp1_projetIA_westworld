@@ -7,6 +7,7 @@ using Random=UnityEngine.Random;
 public class MineurOwnedStates : MonoBehaviour
 {
     public Mineur pMiner;
+    public Manager manager;
     // Start is called before the first frame update
     void Start()
     {
@@ -143,6 +144,8 @@ public class MineurOwnedStates : MonoBehaviour
 
             pMiner.SetLocation(Location.currentLocation.shack);
 
+            manager.SendMessage("MessageMineurOwnedStates", 1);
+
             //let the wife know I'm home
             //Dispatch->DispatchMessage(SEND_MSG_IMMEDIATELY, //time delay
             //                          pMiner->ID(),        //ID of sender
@@ -183,6 +186,10 @@ public class MineurOwnedStates : MonoBehaviour
 
             }
         }
+
+
+        manager.SendMessage("MessageMineurOwnedStates", 0);
+
     }
 
 
@@ -238,6 +245,10 @@ public class MineurOwnedStates : MonoBehaviour
 
         Debug.Log(pMiner.getName() + ": " + "That's mighty fine sippin' liquer");
 
+
+
+
+        
 
 
 

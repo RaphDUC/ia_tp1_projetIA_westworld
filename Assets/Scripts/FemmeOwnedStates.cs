@@ -40,8 +40,7 @@ public class FemmeOwnedStates : MonoBehaviour
             CookStew_four();
             CookStew();
             if(wife.GetCooking() == true){
-                CookStew_serve();
-                CookStew_food_ready();
+                
             }
 
             break;
@@ -163,16 +162,16 @@ void CookStew(){
      Debug.Log(name+" : Fussin' over food");
 }
 
-void CookStew_serve(){
+public void CookStew_serve(){
 
     Debug.Log(name+" : Puttin' the stew on the table");
 
 }
 
 
-void CookStew_food_ready(){ // message 
-
-    Debug.Log(name+" : at time : "+Time.time);
+public void CookStew_food_ready(){ // message 
+        manager.SendMessage("MessageFemmeOwnedStates", 1);
+        Debug.Log(name+" : at time : "+Time.time);
 
     Debug.Log(name+" : StewReady! Lets eat ");
 
@@ -180,6 +179,7 @@ void CookStew_food_ready(){ // message
     //a ajouter envoye message au mineur la bouffe est prete
 
     wife.SetCooking(false);
+   
 
     last_stat=stat;
     stat=0;               

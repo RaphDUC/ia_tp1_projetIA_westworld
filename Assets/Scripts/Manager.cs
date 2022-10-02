@@ -30,13 +30,14 @@ public class Manager : MonoBehaviour
       case 0:
 
         Debug.Log("envoi au mnieur que repas est près");
-        //mineur.SendMessage("",);
+        mineur.SetState(MineurOwnedStates.currentState.GoHomeAndSleepTilRested);
 
-        break;
+                break;
 
       case 1:
 
-        Debug.Log("bien recu 1");
+        Debug.Log("Fini de manger");
+                mineur.SetState(MineurOwnedStates.currentState.EatStew);
 
         break;
 
@@ -55,7 +56,8 @@ public class Manager : MonoBehaviour
 
       case 1:
 
-        Debug.Log("bien recu 1");
+        Debug.Log("Mineur à la maison");
+        femme.SendMessage("Mineur_Maison");
 
         break;
 
