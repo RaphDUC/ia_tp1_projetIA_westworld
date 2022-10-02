@@ -5,6 +5,8 @@ using UnityEngine;
 public class Femme : MonoBehaviour
 {
 
+    FemmeOwnedStates femmeownedstates = new FemmeOwnedStates(); 
+
       //is she presently cooking?
     bool            m_bCooking = false;
     Location.currentLocation  m_Location;
@@ -31,5 +33,21 @@ public class Femme : MonoBehaviour
 
     public void SetCooking(bool val){
         m_bCooking = val;
+    }
+
+    public bool GetCooking(){
+        return m_bCooking;
+    }
+
+    public FemmeOwnedStates GetFemmeOwnedStates(){
+        return femmeownedstates;
+    }
+
+    public void SetManager(Manager manager){
+        femmeownedstates.SetManager(manager);
+    }
+
+    void Mineur_Faim(){
+        femmeownedstates.setstat(2);
     }
 }

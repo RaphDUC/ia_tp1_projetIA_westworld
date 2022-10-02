@@ -6,10 +6,11 @@ using Random=UnityEngine.Random;
 public class FemmeOwnedStates : MonoBehaviour
 {
 
-    int stat; // DoHouseWork, VisitBathroom, CookStew
+    int stat = 0; // DoHouseWork, VisitBathroom, CookStew
     string name = "Elza";
     int last_stat;
     Femme wife;
+    Manager manager;
 
     // Start is called before the first frame update
     void Start()
@@ -20,10 +21,34 @@ public class FemmeOwnedStates : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        switch(stat){
+          case 0:
+                DoHouseWork();
+                DoHouseWork_Message();
+
+            break;
+
+          case 1:
+
+            VisitBathroom_going();
+            VisitBathroom();
+            VisitBathroom_exit();
+
+            break;
+
+          case 2:
+            CookStew_four();
+            CookStew();
+            if(wife.GetCooking() == true){
+                CookStew_serve();
+                CookStew_food_ready();
+            }
+
+            break;
+        }
     }
 
-    void WifesGlobalState (Femme wife){
+    void WifesGlobalState (){
           //1 in 10 chance of needing the bathroom (provided she is not already in the bathroom)
           if ( (Random.Range(0.0f, 100.0f) < 10) && stat != 1){
             last_stat=stat;
@@ -31,7 +56,7 @@ public class FemmeOwnedStates : MonoBehaviour
           }
     }
 
-    /*bool WifesGlobalState (Femme wife){
+    /*bool WifesGlobalState (){
 
       switch(msg.Msg)
       {
@@ -95,21 +120,21 @@ public class FemmeOwnedStates : MonoBehaviour
 //------------------------------------------------------------------------VisitBathroom
 
 
-void VisitBathroom_going(Femme wife){  
+void VisitBathroom_going(){  
 
     Debug.Log(name+" : Walkin' to the can. Need to powda mah pretty li'lle nose");
 
 }
 
 
-void VisitBathroom(Femme wife){
+void VisitBathroom(){
 
     Debug.Log(name+" : Ahhhhhh! Sweet relief!");
     last_stat=stat;
     stat=last_stat;
 }
 
-void VisitBathroom_exit(Femme wife){
+void VisitBathroom_exit(){
 
     Debug.Log(name+" : Leavin' the Jon");
 }
@@ -120,7 +145,7 @@ void VisitBathroom_exit(Femme wife){
 
 
 
-void CookStew_four(Femme wife){
+void CookStew_four(){
   //if not already cooking put the stew in the oven
   if (!wife.Cooking()){
 
@@ -134,18 +159,18 @@ void CookStew_four(Femme wife){
 }
 
 
-void CookStew(Femme wife){
+void CookStew(){
      Debug.Log(name+" : Fussin' over food");
 }
 
-void CookStew_serve(Femme wife){
+void CookStew_serve(){
 
     Debug.Log(name+" : Puttin' the stew on the table");
 
 }
 
 
-void CookStew_food_ready(Femme wife){
+void CookStew_food_ready(){ // message 
 
     Debug.Log(name+" : at time : "+Time.time);
 
@@ -163,6 +188,15 @@ void CookStew_food_ready(Femme wife){
     IEnumerator cookstew_four_delay()
     {
         yield return new WaitForSeconds(1.5f);
+        manager.SendMessage("MessageFemmeOwnedStates",0);
         wife.SetCooking(true);
+    }
+
+    public void SetManager(Manager manager){
+        this.manager = manager;
+    }
+
+    public void setstat(int stat){
+        this.stat = stat;
     }
 }
