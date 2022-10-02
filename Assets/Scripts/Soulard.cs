@@ -75,22 +75,7 @@ public class Soulard : MonoBehaviour
     public void IncreaseThirst() { m_iThirst += 1; }
     public void DrinkLotOfWhiskey() { m_iThirst = 0; }
 
-    public bool Beuverie()
-    {
-
-        Random isAbleToMeetMiner = new Random();
-
-        double probability = 0.50;
-
-        bool result = isAbleToMeetMiner.NextDouble() < probability;
-
-        if (result)
-        {
-            return true;
-        }
-
-        return false;
-    }
+   
 
     public string getName()
     {

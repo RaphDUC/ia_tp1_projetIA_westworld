@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 
 public class MineurOwnedStates : MonoBehaviour
@@ -303,12 +304,12 @@ public class MineurOwnedStates : MonoBehaviour
 
 
         //two cases : i can be sober and then work... or i can be as drunk as Phil... Randomly !
-        Random random = new Random();
-        int probability = random.Next(0, 1);
+
+        float probability = Random.Range(0.0f, 100.0f);
         
 
 
-        if (probability == 1)
+        if (probability <= 50)
         {
             pMiner.SetState(currentState.EnterMineAndDigForNugget);
 
