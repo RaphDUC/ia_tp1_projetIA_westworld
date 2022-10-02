@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Random=UnityEngine.Random;
 
 public class Soulard : MonoBehaviour
 {
@@ -75,7 +76,7 @@ public class Soulard : MonoBehaviour
     public void IncreaseThirst() { m_iThirst += 1; }
     public void DrinkLotOfWhiskey() { m_iThirst = 0; }
 
-   
+ 
 
     public string getName()
     {

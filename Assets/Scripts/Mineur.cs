@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random=UnityEngine.Random;
 
 public class Mineur : MonoBehaviour
 {
@@ -142,7 +143,6 @@ public class Mineur : MonoBehaviour
     {
         m_iMoneyInBank = val;
     }
-
 
 
     public void BuyAndDrinkAWhiskey()

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Random = UnityEngine.Random;
+using Random=UnityEngine.Random;
 
 
 public class MineurOwnedStates : MonoBehaviour
@@ -306,7 +306,7 @@ public class MineurOwnedStates : MonoBehaviour
         
 
 
-        if (probability <= 50)
+        if (probability <=50)
         {
             pMiner.SetState(currentState.EnterMineAndDigForNugget);
 
