@@ -14,11 +14,12 @@ public class Manager : MonoBehaviour
     void Start()
     {
         Debug.Log("hey");
+        mineur.setmanager(this);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
