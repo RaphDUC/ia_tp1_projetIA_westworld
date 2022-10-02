@@ -8,6 +8,7 @@ public class Manager : MonoBehaviour
     Mineur mineur = new Mineur();
     Femme femme = new Femme();
     Soulard soulard = new Soulard();
+    public Manager m;
 
 
     // Start is called before the first frame update
@@ -21,4 +22,5 @@ public class Manager : MonoBehaviour
     {
         
     }
+
 }
