@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 public class MineurOwnedStates : MonoBehaviour
 {
-
+    public Mineur pMiner;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,10 +14,7 @@ public class MineurOwnedStates : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-
-    }
+    
 
     //void EnterMineAndDigForNugget(Mineur pMiner){
     ////if the miner is not already located at the goldmine, he must
@@ -46,7 +43,7 @@ public class MineurOwnedStates : MonoBehaviour
 
 
 
-    void EnterMineAndDigForNugget(Mineur pMiner)
+    void EnterMineAndDigForNugget()
     {
 
         //if the miner is not already located at the goldmine, he must
@@ -84,7 +81,7 @@ public class MineurOwnedStates : MonoBehaviour
 
     }
 
-    void VisitBankAndDepositGold(Mineur pMiner)
+    void VisitBankAndDepositGold()
     {
         if (pMiner.GetCurrentLocation() != Location.currentLocation.bank)
             pMiner.SetLocation(Location.currentLocation.bank);
@@ -128,7 +125,7 @@ public class MineurOwnedStates : MonoBehaviour
 
 
 
-    void GoHomeAndSleepTilRested(Mineur pMiner)
+    void GoHomeAndSleepTilRested()
     {
         if (pMiner.GetCurrentLocation() != Location.currentLocation.shack)
         {
@@ -218,7 +215,7 @@ public class MineurOwnedStates : MonoBehaviour
 
     //PLace here 
 
-    void BuyAndDrinkWhiskey(Mineur pMiner)
+    void BuyAndDrinkWhiskey()
     {
 
         if (pMiner.GetCurrentLocation() != Location.currentLocation.saloon)
@@ -272,7 +269,7 @@ public class MineurOwnedStates : MonoBehaviour
     //------------------------------------------------------------------------EatStew
 
 
-    void EatStew(Mineur pMiner)
+    void EatStew()
     {
         Debug.Log(pMiner.getName() + ": " + "Smells Reaaal goood Elsa!");
 
@@ -292,7 +289,7 @@ public class MineurOwnedStates : MonoBehaviour
 
 
 
-    void Bender(Mineur pMiner)
+    void Bender()
     {
         Debug.Log(pMiner.getName() + ": " + "Alright, let's drink all the alcohols we can, Phil' !");
 
@@ -342,8 +339,41 @@ public class MineurOwnedStates : MonoBehaviour
     }
 
 
+    void Update()
+    {
+        if (pMiner.GetCurrentState() == currentState.VisitBankAndDepositGold)
+        {
+            VisitBankAndDepositGold();
+        }
+        else if (pMiner.GetCurrentState() == currentState.GoHomeAndSleepTilRested)
+        {
+            GoHomeAndSleepTilRested();
+
+        }else if (pMiner.GetCurrentState() == currentState.GoHomeAndSleepTilRested)
+        {
+            GoHomeAndSleepTilRested();
+
+        }else if (pMiner.GetCurrentState() == currentState.EnterMineAndDigForNugget)
+        {
+            EnterMineAndDigForNugget();
+
+        }else if (pMiner.GetCurrentState() == currentState.BuyAndDrinkWhiskey)
+        {
+            BuyAndDrinkWhiskey();
+
+        }else if (pMiner.GetCurrentState() == currentState.Bender)
+        {
+            Bender();
+        }else if (pMiner.GetCurrentState() == currentState.EatStew)
+        {
+            EatStew();
+        }
+
+
+    }
 
 }
+
 
 //------------------------------------------------------------------------QuenchThirst
 
