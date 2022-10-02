@@ -58,9 +58,9 @@ public class SoulardOwnedStates : MonoBehaviour
         else
         {
             //sleep
-            pDrunken->DecreaseThirst();
+            pDrunken.DecreaseThirst();
+            Debug.Log(pDrunken.getName() + ": " + "ZZZZ...hips!... ");
 
-            cout << "\n" << GetNameOfEntity(pDrunken->ID()) << ": " << "ZZZZ...hips !... ";
         }
 
 
@@ -87,20 +87,22 @@ public class SoulardOwnedStates : MonoBehaviour
 
     void DrinkWhiskeyAtWill(Soulard pDrunken)
     {
-        if (pDrunken->Location() != saloon)
+        if (pDrunken.GetCurrentLocation() != Location.currentLocation.saloon)
         {
-            pDrunken->ChangeLocation(saloon);
+            pDrunken.SetLocation(Location.currentLocation.saloon);
+            Debug.Log(pDrunken.getName() + ": " + "Le'z go to the saloon...hips !...");
 
-            cout << "\n" << GetNameOfEntity(pDrunken->ID()) << ": " << "Le'z go to the saloon...hips !...";
         }
 
-        pDrunken->DrinkLotOfWhiskey();
+        pDrunken.DrinkLotOfWhiskey();
 
-        cout << "\n" << GetNameOfEntity(pDrunken->ID()) << ": " << "Hips !...Raaah..enough drinkin'...";
+        Debug.Log(pDrunken.getName() + ": " + "Hips !...Raaah..enough drinkin'...");
 
-        pDrunken->GetFSM()->ChangeState(GoHomeAndSleepTilThirsty::Instance());
+        pDrunken.SetState(currentState.GoHomeAndSleepTilThirsty);
 
-        cout << "\n" << GetNameOfEntity(pDrunken->ID()) << ": " << "Leavin'..hips !...the saloon..";
+        Debug.Log(pDrunken.getName() + ": " + "Leavin'..hips !...the saloon..");
+
+
 
         //switch (msg.Msg)
         //{
@@ -128,19 +130,24 @@ public class SoulardOwnedStates : MonoBehaviour
 
 
 
-    void BenderWithMiner(Soulard drunken)
+    void BenderWithMiner(Soulard pDrunken)
     {
         //if miner is here, invite him to drink and tchat
 
-        cout << "\n" << GetNameOfEntity(drunken->ID()) << ":Arrrh... let's drin' a bit, shall we ?";
 
-        cout << "\n" << GetNameOfEntity(drunken->ID()) << ": Hey, ya need to drink a bit more like this, mattey' !";
+        Debug.Log(pDrunken.getName() + ": " + ":Arrrh... let's drin' a bit, shall we ?");
 
-        drunken->GetFSM()->ChangeState(DrinkWhiskeyAtWill::Instance());
 
-        SetTextColor(FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+        Debug.Log(pDrunken.getName() + ": " + ": Hey, ya need to drink a bit more like this, mattey' !");
 
-        cout << "\n" << GetNameOfEntity(drunken->ID()) << ": Burp...that was fine...hips !..";
+
+
+        pDrunken.SetState(currentState.DrinkWhiskeyAtWill);
+
+
+
+        Debug.Log(pDrunken.getName() + ": " + " Burp...that was fine...hips!..");
+
 
         //switch (msg.Msg)
         //{

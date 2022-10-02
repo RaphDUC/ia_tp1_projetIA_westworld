@@ -238,7 +238,8 @@ public class MineurOwnedStates : MonoBehaviour
 
         pMiner.BuyAndDrinkAWhiskey();
 
-        cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "That's mighty fine sippin' liquer";
+        Debug.Log(pMiner.getName() + ": " + "That's mighty fine sippin' liquer");
+
 
 
 
@@ -274,12 +275,14 @@ public class MineurOwnedStates : MonoBehaviour
     {
         Debug.Log(pMiner.getName() + ": " + "Smells Reaaal goood Elsa!");
 
+        Debug.Log(pMiner.getName() + ": " + "Tastes real good too!");
 
-        cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Tastes real good too!";
 
-        pMiner->GetFSM()->RevertToPreviousState();
 
-        cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Thankya li'lle lady. Ah better get back to whatever ah wuz doin'";
+        pMiner.SetState(currentState.GoHomeAndSleepTilRested);
+
+
+        Debug.Log(pMiner.getName() + ": " + "Thankya li'lle lady. Ah better get back to whatever ah wuz doin'");
 
     }
 
@@ -290,27 +293,31 @@ public class MineurOwnedStates : MonoBehaviour
 
     void Bender(Mineur pMiner)
     {
-        cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Alright, let's drink all the alcohols we can, Phil' !";
+        Debug.Log(pMiner.getName() + ": " + "Alright, let's drink all the alcohols we can, Phil' !");
 
 
 
 
+        Debug.Log(pMiner.getName() + ": " + "Damn... and Phil' can take like ten of that.. burp !..");
 
-        cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Damn... and Phil' can take like ten of that.. burp !..";
+
 
         //two cases : i can be sober and then work... or i can be as drunk as Phil... Randomly !
-
-        int probability = (rand() % 2) + 1;
+        Random random = new Random();
+        int probability = random.Next(0, 1);
+        
 
 
         if (probability == 1)
         {
-            pMiner->GetFSM()->ChangeState(EnterMineAndDigForNugget::Instance());
+            pMiner.SetState(currentState.EnterMineAndDigForNugget);
+
         }
         else
         {
-            pMiner->SetAlcooled(true);
-            pMiner->GetFSM()->ChangeState(GoHomeAndSleepTilRested::Instance());
+            pMiner.SetAlcooled(true);
+            pMiner.SetState(currentState.GoHomeAndSleepTilRested);
+
         }
 
 
@@ -318,15 +325,17 @@ public class MineurOwnedStates : MonoBehaviour
 
 
 
-        if (pMiner->Alcooled())
+        if (pMiner.Alcooled())
         {
-            cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "All right, thanks ! Enough drinkin', back to work now !";
+            Debug.Log(pMiner.getName() + ": " + "All right, thanks! Enough drinkin', back to work now !");
+
 
         }
         else
         {
+            Debug.Log(pMiner.getName() + ": " + "Hips ...! eeh eheha !.. 'think it was a bit too much...hips ! Thank ya -hips !- Phil !...");
 
-            cout << "\n" << GetNameOfEntity(pMiner->ID()) << ": " << "Hips ...! eeh eheha !.. 'think it was a bit too much...hips ! Thank ya -hips !- Phil !...";
+
 
         }
     }

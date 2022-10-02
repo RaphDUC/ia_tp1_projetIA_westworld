@@ -71,6 +71,10 @@ public class Soulard : MonoBehaviour
         return false;
     }
 
+    public void DecreaseThirst() { m_iThirst -= 1; }
+    public void IncreaseThirst() { m_iThirst += 1; }
+    public void DrinkLotOfWhiskey() { m_iThirst = 0; }
+
     public bool Beuverie()
     {
 
