@@ -20,7 +20,7 @@ public class Femme : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log("lol");
     }
 
     void ChangeLocation(Location.currentLocation loc){
