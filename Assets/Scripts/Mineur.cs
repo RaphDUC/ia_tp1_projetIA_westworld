@@ -34,6 +34,8 @@ public class Mineur : MonoBehaviour
     private int m_iThirst = 0;
     //the higher the value, the more tired the miner
     private int m_iFatigue = 0;
+
+    private int food=0;
     Location.currentLocation m_Location;
     MineurOwnedStates.currentState m_State;
 

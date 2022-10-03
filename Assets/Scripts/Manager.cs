@@ -5,8 +5,8 @@ using UnityEngine;
 public class Manager : MonoBehaviour
 {
 
-    Mineur mineur = new Mineur();
-    Femme femme = new Femme();
+    public Mineur mineur;
+    public Femme femme;
     Soulard soulard = new Soulard();
     public Manager m;
 
@@ -14,15 +14,14 @@ public class Manager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("hey");
         mineur.setmanager(this);
         femme.SetManager(m);
     }
 
     // Update is called once per frame
     void Update()
-    {
-
+    { 
+        
     }
 
     void MessageFemmeOwnedStates(int Type_of_message){
