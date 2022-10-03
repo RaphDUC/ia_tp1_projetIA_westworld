@@ -58,7 +58,7 @@ public class Manager : MonoBehaviour
         switch(Type_of_message){
       case 0:
 
-        Debug.Log("Mineur a fin");
+        Debug.Log("Mineur a faim");
         femme.SendMessage("Mineur_Faim");
 
         break;

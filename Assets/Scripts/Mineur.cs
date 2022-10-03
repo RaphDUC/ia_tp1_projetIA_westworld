@@ -26,6 +26,8 @@ public class Mineur : MonoBehaviour
     public int ThirstLevel = 5;
     //above this value a miner is sleepy
     public int TirednessThreshold = 5;
+    //above this value a miner is hungry
+    public int HungernessThreshold = 5;
 
     //how many nuggets the miner has in his pockets
     private int m_iGoldCarried = 0;
@@ -34,8 +36,9 @@ public class Mineur : MonoBehaviour
     private int m_iThirst = 0;
     //the higher the value, the more tired the miner
     private int m_iFatigue = 0;
+    //the higher the value, the more hungry the miner
+    private int m_iHunger = 0;
 
-    private int food=0;
     Location.currentLocation m_Location;
     MineurOwnedStates.currentState m_State;
 
@@ -136,6 +139,25 @@ public class Mineur : MonoBehaviour
         m_iFatigue += 1;
     }
 
+    public bool Hungry()
+    {
+        if (m_iHunger > HungernessThreshold)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void ResetHunger()
+    {
+        m_iHunger =0;
+
+    }
+
+    public void IncreaseHunger()
+    {
+        m_iHunger += 1;
+    }
     public int Wealth()
     {
         return m_iMoneyInBank;
