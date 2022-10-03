@@ -15,9 +15,19 @@ public class Manager : MonoBehaviour
     void Start()
     {
         Debug.Log("hey");
-        mineur.setmanager(this);
+        mineur.setmanager(m);
         femme.SetManager(m);
+
+        mineur.SetState(MineurOwnedStates.currentState.EnterMineAndDigForNugget);
+
+
+        //femme.SetState(MineurOwnedStates.currentState.EnterMineAndDigForNugget);
+
+
+
+        
     }
+
 
     // Update is called once per frame
     void Update()
