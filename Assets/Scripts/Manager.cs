@@ -15,8 +15,18 @@ public class Manager : MonoBehaviour
     void Start()
     {
         mineur.setmanager(this);
-        femme.SetManager(m);
+        femme.SetManager(this);
+
+        mineur.SetState(MineurOwnedStates.currentState.EnterMineAndDigForNugget);
+
+
+        //femme.SetState(MineurOwnedStates.currentState.EnterMineAndDigForNugget);
+
+
+        StartCoroutine(lol());
+        
     }
+
 
     // Update is called once per frame
     void Update()
@@ -48,7 +58,7 @@ public class Manager : MonoBehaviour
         switch(Type_of_message){
       case 0:
 
-        Debug.Log("Mineur a fin");
+        Debug.Log("Mineur a faim");
         femme.SendMessage("Mineur_Faim");
 
         break;
@@ -63,5 +73,12 @@ public class Manager : MonoBehaviour
       }
 
     }
+
+    IEnumerator lol()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Debug.Log("aleofdnzozef");
+    }
+
 
 }

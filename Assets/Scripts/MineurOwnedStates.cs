@@ -63,6 +63,14 @@ public class MineurOwnedStates : MonoBehaviour
         pMiner.AddToGoldCarried(1);
 
         pMiner.IncreaseFatigue();
+        pMiner.IncreaseHunger();
+
+        if (pMiner.Hungry())
+        {
+            int i = 0;
+            manager.SendMessage("MessageMineurOwnedStates", i);
+
+        }
 
         Debug.Log(pMiner.getName() + ": " + "Pickin' up a nugget");
 
@@ -187,8 +195,8 @@ public class MineurOwnedStates : MonoBehaviour
             }
         }
 
-
-        manager.SendMessage("MessageMineurOwnedStates", 0);
+        int i = 0;
+        manager.SendMessage("MessageMineurOwnedStates",i);
 
     }
 
@@ -245,10 +253,11 @@ public class MineurOwnedStates : MonoBehaviour
 
         Debug.Log(pMiner.getName() + ": " + "That's mighty fine sippin' liquer");
 
+        Debug.Log(pMiner.getName() + ": " + "Leaving the saloon, feelin' good"); 
 
 
 
-        
+        pMiner.SetState(currentState.GoHomeAndSleepTilRested);
 
 
 
@@ -286,7 +295,7 @@ public class MineurOwnedStates : MonoBehaviour
 
         Debug.Log(pMiner.getName() + ": " + "Tastes real good too!");
 
-
+        pMiner.ResetHunger();
 
         pMiner.SetState(currentState.GoHomeAndSleepTilRested);
 

@@ -156,6 +156,7 @@ MonoBehaviour:
   MaxNuggets: 3
   ThirstLevel: 5
   TirednessThreshold: 5
+  HungernessThreshold: 5
 --- !u!4 &550479597
 Transform:
   m_ObjectHideFlags: 0
@@ -532,3 +533,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29591f4883bd1084c988acbae047f545, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wife: {fileID: 691445451}

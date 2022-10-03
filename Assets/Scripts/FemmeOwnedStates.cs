@@ -9,8 +9,10 @@ public class FemmeOwnedStates : MonoBehaviour
     int stat = 0; // DoHouseWork, VisitBathroom, CookStew
     string name = "Elza";
     int last_stat;
-    Femme wife;
+    public Femme wife;
     Manager manager;
+    bool cook = false;
+    bool cooking = false;
 
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,8 @@ public class FemmeOwnedStates : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+            Debug.Log("oula " + stat);
+
         switch(stat){
           case 0:
                 DoHouseWork();
@@ -39,9 +43,6 @@ public class FemmeOwnedStates : MonoBehaviour
           case 2:
             CookStew_four();
             CookStew();
-            if(wife.GetCooking() == true){
-                
-            }
 
             break;
         }
@@ -94,7 +95,8 @@ public class FemmeOwnedStates : MonoBehaviour
 
 
     void DoHouseWork_Message(){
-      switch(Random.Range(0,2)){
+      switch(Random.Range(0,3)){
+
       case 0:
 
         Debug.Log(name+" : Moppin' the floor");
@@ -108,10 +110,14 @@ public class FemmeOwnedStates : MonoBehaviour
         break;
 
       case 2:
-
-        Debug.Log(name+" : Makin' the bed");
+        last_stat=stat;
+        stat=1;
 
         break;
+
+    case 3:
+        Debug.Log(name+" : Makin' the bed");
+    break;
       }
     }
 
@@ -146,13 +152,18 @@ void VisitBathroom_exit(){
 
 void CookStew_four(){
   //if not already cooking put the stew in the oven
-  if (!wife.Cooking()){
+  
+  if (!cook && !cooking){
 
     Debug.Log(name+" : Putting the stew in the oven");
   
     //send a delayed message myself so that I know when to take the stew
     //out of the oven
+    cooking = true;
+    Debug.Log("ezsbvzebdjusbloezsdlovnhsndsv");
     StartCoroutine(cookstew_four_delay());
+    last_stat=stat;
+    stat=3; 
 
   }
 }
@@ -179,6 +190,7 @@ public void CookStew_food_ready(){ // message
     //a ajouter envoye message au mineur la bouffe est prete
 
     wife.SetCooking(false);
+    cook = false;
    
 
     last_stat=stat;
@@ -188,8 +200,11 @@ public void CookStew_food_ready(){ // message
     IEnumerator cookstew_four_delay()
     {
         yield return new WaitForSeconds(1.5f);
-        manager.SendMessage("MessageFemmeOwnedStates",0);
+        int i = 0;
+        manager.SendMessage("MessageFemmeOwnedStates",i);
         wife.SetCooking(true);
+        cook = true;
+        cooking = false;
     }
 
     public void SetManager(Manager manager){
@@ -198,5 +213,9 @@ public void CookStew_food_ready(){ // message
 
     public void setstat(int stat){
         this.stat = stat;
+        Debug.Log("oula " + stat);
+        CookStew_four();
+        CookStew();
+
     }
 }

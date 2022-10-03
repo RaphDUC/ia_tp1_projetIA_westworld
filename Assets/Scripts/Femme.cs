@@ -5,7 +5,7 @@ using UnityEngine;
 public class Femme : MonoBehaviour
 {
 
-    FemmeOwnedStates femmeownedstates = new FemmeOwnedStates(); 
+    public FemmeOwnedStates femmeownedstates; 
 
       //is she presently cooking?
     bool            m_bCooking = false;
@@ -15,6 +15,7 @@ public class Femme : MonoBehaviour
     void Start()
     {
 //commentaire
+        m_bCooking = false;
     }
 
     // Update is called once per frame
@@ -49,12 +50,16 @@ public class Femme : MonoBehaviour
 
     void Mineur_Faim(){
         femmeownedstates.setstat(2);
+
     }
 
     void Mineur_Maison()
     {
+        Debug.Log("azedsuhveikdlfnvedr" + m_bCooking);
         if (m_bCooking)
         {
+
+            
             femmeownedstates.CookStew_serve();
             femmeownedstates.CookStew_food_ready();
         }
