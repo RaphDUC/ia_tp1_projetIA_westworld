@@ -58,3 +58,7 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
+Assets/Scripts/MineurOwnedStates_BACKUP_1862.cs
+Assets/Scripts/MineurOwnedStates_BASE_1862.cs
+Assets/Scripts/MineurOwnedStates_LOCAL_1862.cs
+Assets/Scripts/MineurOwnedStates_REMOTE_1862.cs
