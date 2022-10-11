@@ -5,6 +5,8 @@ using UnityEngine;
 public class Femme : MonoBehaviour
 {
 
+    public int nbr_apelle=0;
+
     public FemmeOwnedStates femmeownedstates; 
 
       //is she presently cooking?
@@ -16,12 +18,15 @@ public class Femme : MonoBehaviour
     {
 //commentaire
         m_bCooking = false;
+        StartCoroutine(New_Update());
     }
 
     // Update is called once per frame
-    void Update()
+    IEnumerator New_Update()
     {
-        Debug.Log("lol");
+        yield return new WaitForSeconds(1);
+        Debug.Log("etat bouffe " + m_bCooking);
+        StartCoroutine(New_Update());
     }
 
     void ChangeLocation(Location.currentLocation loc){
@@ -50,18 +55,24 @@ public class Femme : MonoBehaviour
 
     void Mineur_Faim(){
         femmeownedstates.setstat(2);
+        nbr_apelle++;
+
+    }
+
+    void Mineur_Faim2(){
+        femmeownedstates.setstat(2);
+        nbr_apelle++;
 
     }
 
     void Mineur_Maison()
     {
-        Debug.Log("azedsuhveikdlfnvedr" + m_bCooking);
         if (m_bCooking)
         {
-
-            
+            Debug.Log("azseldfnoeqdlonfbl" + m_bCooking);
             femmeownedstates.CookStew_serve();
             femmeownedstates.CookStew_food_ready();
         }
     }
+
 }

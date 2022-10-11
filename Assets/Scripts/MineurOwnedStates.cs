@@ -8,10 +8,13 @@ public class MineurOwnedStates : MonoBehaviour
 {
     public Mineur pMiner;
     public Manager manager;
+    public GameObject txt_mineur;
+    public string etat;
+
     // Start is called before the first frame update
     void Start()
     {
-        //
+        StartCoroutine(New_Update());
     }
 
     // Update is called once per frame
@@ -26,6 +29,8 @@ public class MineurOwnedStates : MonoBehaviour
     //        pMiner.ChangeLocation(goldmine);
     //    }
     //}
+
+
 
 
     public enum currentState
@@ -54,6 +59,7 @@ public class MineurOwnedStates : MonoBehaviour
         if (pMiner.GetCurrentLocation() != Location.currentLocation.goldmine)
         {
             Debug.Log(pMiner.getName() + ": " + "Walkin' to the goldmine");
+            etat = pMiner.getName() + ": " + "Walkin' to the goldmine";
             pMiner.SetLocation(Location.currentLocation.goldmine);
 
         }
@@ -73,6 +79,7 @@ public class MineurOwnedStates : MonoBehaviour
         }
 
         Debug.Log(pMiner.getName() + ": " + "Pickin' up a nugget");
+        etat = pMiner.getName() + ": " + "Pickin' up a nugget";
 
 
         if (pMiner.PocketsFull())
@@ -86,6 +93,7 @@ public class MineurOwnedStates : MonoBehaviour
         }
 
         Debug.Log(pMiner.getName() + ": " + "Ah'm leavin' the goldmine with mah pockets full o' sweet gold");
+        etat = pMiner.getName() + ": " + "Ah'm leavin' the goldmine with mah pockets full o' sweet gold";
 
 
     }
@@ -100,6 +108,7 @@ public class MineurOwnedStates : MonoBehaviour
         pMiner.SetGoldCarried(0);
 
         Debug.Log(pMiner.getName() + ": " + "Depositing gold. Total savings now: " + pMiner.Wealth());
+        etat = pMiner.getName() + ": " + "Depositing gold. Total savings now: " + pMiner.Wealth();
 
         //////
 
@@ -109,6 +118,7 @@ public class MineurOwnedStates : MonoBehaviour
         if (pMiner.Wealth() >= pMiner.ComfortLevel)
         {
             Debug.Log(pMiner.getName() + ": " + "WooHoo! Rich enough for now. Back home to mah li'lle lady");
+            etat = pMiner.getName() + ": " + "WooHoo! Rich enough for now. Back home to mah li'lle lady";
 
             pMiner.SetState(currentState.GoHomeAndSleepTilRested);
 
@@ -121,6 +131,7 @@ public class MineurOwnedStates : MonoBehaviour
         }
 
         Debug.Log(pMiner.getName() + ": " + "Leavin' the bank");
+        etat = pMiner.getName() + ": " + "Leavin' the bank";
 
     }
 
@@ -141,11 +152,13 @@ public class MineurOwnedStates : MonoBehaviour
             if (!pMiner.Alcooled())
             {
                 Debug.Log(pMiner.getName() + ": " + "Walkin' home");
+                etat = pMiner.getName() + ": " + "Walkin' home";
 
             }
             else
             {
                 Debug.Log(pMiner.getName() + ": " + "Walkin'...hips !... home !..hips !...");
+                etat = pMiner.getName() + ": " + "Walkin'...hips !... home !..hips !...";
 
 
             }
@@ -171,10 +184,12 @@ public class MineurOwnedStates : MonoBehaviour
                 pMiner.SetAlcooled(false);
 
                 Debug.Log(pMiner.getName() + ": " + "Pffew... more sober right now !...");
+                etat = pMiner.getName() + ": " + "Pffew... more sober right now !...";
 
 
             }
             Debug.Log(pMiner.getName() + ": " + "All mah fatigue has drained away.Time to find more gold!");
+            etat = pMiner.getName() + ": " + "All mah fatigue has drained away.Time to find more gold!";
 
 
             pMiner.SetState(currentState.EnterMineAndDigForNugget);
@@ -185,11 +200,13 @@ public class MineurOwnedStates : MonoBehaviour
             //sleep
             pMiner.DecreaseFatigue();
             Debug.Log(pMiner.getName() + ": " + "ZZZZ... ");
+            etat = pMiner.getName() + ": " + "ZZZZ... ";
 
 
             if (pMiner.Alcooled())
             {
                 Debug.Log(pMiner.getName() + ": " + "Hips !... ");
+                etat = pMiner.getName() + ": " + "Hips !... ";
 
 
             }
@@ -238,6 +255,7 @@ public class MineurOwnedStates : MonoBehaviour
             pMiner.SetLocation(Location.currentLocation.saloon);
 
             Debug.Log(pMiner.getName() + ": " + "Boy, ah sure is thusty! Walking to the saloon");
+            etat = pMiner.getName() + ": " + "Boy, ah sure is thusty! Walking to the saloon";
 
 
             //send a delayed message to the drunken man
@@ -252,8 +270,10 @@ public class MineurOwnedStates : MonoBehaviour
         pMiner.BuyAndDrinkAWhiskey();
 
         Debug.Log(pMiner.getName() + ": " + "That's mighty fine sippin' liquer");
+        etat = pMiner.getName() + ": " + "That's mighty fine sippin' liquer";
 
         Debug.Log(pMiner.getName() + ": " + "Leaving the saloon, feelin' good"); 
+        etat = pMiner.getName() + ": " + "Leaving the saloon, feelin' good";
 
 
 
@@ -292,8 +312,10 @@ public class MineurOwnedStates : MonoBehaviour
     void EatStew()
     {
         Debug.Log(pMiner.getName() + ": " + "Smells Reaaal goood Elsa!");
+        etat = pMiner.getName() + ": " + "Smells Reaaal goood Elsa!";
 
         Debug.Log(pMiner.getName() + ": " + "Tastes real good too!");
+        etat = pMiner.getName() + ": " + "Tastes real good too!";
 
         pMiner.ResetHunger();
 
@@ -301,6 +323,7 @@ public class MineurOwnedStates : MonoBehaviour
 
 
         Debug.Log(pMiner.getName() + ": " + "Thankya li'lle lady. Ah better get back to whatever ah wuz doin'");
+        etat = pMiner.getName() + ": " + "Thankya li'lle lady. Ah better get back to whatever ah wuz doin'";
 
     }
 
@@ -312,12 +335,12 @@ public class MineurOwnedStates : MonoBehaviour
     void Bender()
     {
         Debug.Log(pMiner.getName() + ": " + "Alright, let's drink all the alcohols we can, Phil' !");
-
+        etat = pMiner.getName() + ": " + "Alright, let's drink all the alcohols we can, Phil' !";
 
 
 
         Debug.Log(pMiner.getName() + ": " + "Damn... and Phil' can take like ten of that.. burp !..");
-
+        etat = pMiner.getName() + ": " + "Damn... and Phil' can take like ten of that.. burp !..";
 
 
         //two cases : i can be sober and then work... or i can be as drunk as Phil... Randomly !
@@ -346,12 +369,14 @@ public class MineurOwnedStates : MonoBehaviour
         if (pMiner.Alcooled())
         {
             Debug.Log(pMiner.getName() + ": " + "All right, thanks! Enough drinkin', back to work now !");
+            etat = pMiner.getName() + ": " + "All right, thanks! Enough drinkin', back to work now !";
 
 
         }
         else
         {
             Debug.Log(pMiner.getName() + ": " + "Hips ...! eeh eheha !.. 'think it was a bit too much...hips ! Thank ya -hips !- Phil !...");
+            etat = pMiner.getName() + ": " + "Hips ...! eeh eheha !.. 'think it was a bit too much...hips ! Thank ya -hips !- Phil !...";
 
 
 
@@ -359,8 +384,10 @@ public class MineurOwnedStates : MonoBehaviour
     }
 
 
-    void Update()
+    IEnumerator New_Update()
     {
+        yield return new WaitForSeconds(1);
+         txt_mineur.GetComponent<UnityEngine.UI.Text>().text = etat;
         if (pMiner.GetCurrentState() == currentState.VisitBankAndDepositGold)
         {
             VisitBankAndDepositGold();
@@ -389,6 +416,7 @@ public class MineurOwnedStates : MonoBehaviour
             EatStew();
         }
 
+        StartCoroutine(New_Update());
 
     }
 
