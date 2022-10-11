@@ -295,6 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9de8bf2a6e671e24787ed983d3fc459f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  femmeownedstates: {fileID: 1083948505}
 --- !u!4 &691445452
 Transform:
   m_ObjectHideFlags: 0
