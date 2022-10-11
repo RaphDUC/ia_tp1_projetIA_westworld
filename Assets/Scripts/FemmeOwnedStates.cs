@@ -6,24 +6,27 @@ using Random=UnityEngine.Random;
 public class FemmeOwnedStates : MonoBehaviour
 {
 
-    int stat = 0; // DoHouseWork, VisitBathroom, CookStew
+    public int stat = 0; // DoHouseWork, VisitBathroom, CookStew
     string name = "Elza";
     int last_stat;
     public Femme wife;
     Manager manager;
     bool cook = false;
     bool cooking = false;
+    public GameObject txt_femme;
+    public string etat;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(New_Update());
     }
 
     // Update is called once per frame
-    void Update()
+    IEnumerator New_Update()
     {
-            Debug.Log("oula " + stat);
+        yield return new WaitForSeconds(1);
+        txt_femme.GetComponent<UnityEngine.UI.Text>().text = etat;
 
         switch(stat){
           case 0:
@@ -46,6 +49,8 @@ public class FemmeOwnedStates : MonoBehaviour
 
             break;
         }
+
+        StartCoroutine(New_Update());
     }
 
     void WifesGlobalState (){
@@ -91,6 +96,7 @@ public class FemmeOwnedStates : MonoBehaviour
 
     void DoHouseWork(){
         Debug.Log(name+" :Time to do some more housework!");
+        etat = name+" :Time to do some more housework!";
     }
 
 
@@ -100,12 +106,14 @@ public class FemmeOwnedStates : MonoBehaviour
       case 0:
 
         Debug.Log(name+" : Moppin' the floor");
+        etat = name+" : Moppin' the floor";
 
         break;
 
       case 1:
 
         Debug.Log(name+" : Washin' the dishes");
+        etat = name+" : Washin' the dishes";
 
         break;
 
@@ -117,6 +125,7 @@ public class FemmeOwnedStates : MonoBehaviour
 
     case 3:
         Debug.Log(name+" : Makin' the bed");
+        etat = name+" : Makin' the bed";
     break;
       }
     }
@@ -128,6 +137,7 @@ public class FemmeOwnedStates : MonoBehaviour
 void VisitBathroom_going(){  
 
     Debug.Log(name+" : Walkin' to the can. Need to powda mah pretty li'lle nose");
+    etat = name+" : Walkin' to the can. Need to powda mah pretty li'lle nose";
 
 }
 
@@ -135,6 +145,7 @@ void VisitBathroom_going(){
 void VisitBathroom(){
 
     Debug.Log(name+" : Ahhhhhh! Sweet relief!");
+    etat = name+" : Ahhhhhh! Sweet relief!";
     last_stat=stat;
     stat=last_stat;
 }
@@ -142,6 +153,7 @@ void VisitBathroom(){
 void VisitBathroom_exit(){
 
     Debug.Log(name+" : Leavin' the Jon");
+    etat = name+" : Leavin' the Jon";
 }
 
 
@@ -156,14 +168,14 @@ void CookStew_four(){
   if (!cook && !cooking){
 
     Debug.Log(name+" : Putting the stew in the oven");
+    etat = name+" : Putting the stew in the oven";
   
     //send a delayed message myself so that I know when to take the stew
     //out of the oven
     cooking = true;
-    Debug.Log("ezsbvzebdjusbloezsdlovnhsndsv");
     StartCoroutine(cookstew_four_delay());
     last_stat=stat;
-    stat=3; 
+    stat=2; 
 
   }
 }
@@ -171,11 +183,13 @@ void CookStew_four(){
 
 void CookStew(){
      Debug.Log(name+" : Fussin' over food");
+     etat = name+" : Fussin' over food";
 }
 
 public void CookStew_serve(){
 
     Debug.Log(name+" : Puttin' the stew on the table");
+    etat = name+" : Puttin' the stew on the table";
 
 }
 
@@ -183,8 +197,13 @@ public void CookStew_serve(){
 public void CookStew_food_ready(){ // message 
         manager.SendMessage("MessageFemmeOwnedStates", 1);
         Debug.Log(name+" : at time : "+Time.time);
+        etat = name+" : at time : "+Time.time;
+        txt_femme.GetComponent<UnityEngine.UI.Text>().text = etat;
+
 
     Debug.Log(name+" : StewReady! Lets eat ");
+    etat = name+" : StewReady! Lets eat ";
+    txt_femme.GetComponent<UnityEngine.UI.Text>().text = etat;
 
 
     //a ajouter envoye message au mineur la bouffe est prete
@@ -194,7 +213,9 @@ public void CookStew_food_ready(){ // message
    
 
     last_stat=stat;
-    stat=0;               
+    stat=0;
+    Debug.Log("passe par la ");
+    DoHouseWork();         
 }
 
     IEnumerator cookstew_four_delay()
@@ -213,9 +234,9 @@ public void CookStew_food_ready(){ // message
 
     public void setstat(int stat){
         this.stat = stat;
-        Debug.Log("oula " + stat);
         CookStew_four();
         CookStew();
 
     }
+
 }

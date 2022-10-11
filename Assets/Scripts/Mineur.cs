@@ -54,14 +54,11 @@ public class Mineur : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        StartCoroutine(New_Update());
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        m_iThirst += 1;
-    }
+    
 
     public Location.currentLocation GetCurrentLocation()
     {
@@ -197,6 +194,13 @@ public class Mineur : MonoBehaviour
     public string getName()
     {
         return m_name;
+    }
+
+    IEnumerator New_Update()
+    {
+        yield return new WaitForSeconds(1);
+        m_iThirst += 1;
+        StartCoroutine(New_Update());
     }
 
 
