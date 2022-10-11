@@ -335,7 +335,7 @@ public class MineurOwnedStates : MonoBehaviour
 
         //two cases : i can be sober and then work... or i can be as drunk as Phil... Randomly !
 
-        
+        pMiner.ResetThirst();
 
         float probability = Random.Range(0.0f, 100.0f);
         
@@ -412,7 +412,6 @@ public class MineurOwnedStates : MonoBehaviour
 }
 
 
-//------------------------------------------------------------------------QuenchThirst
 
 
 

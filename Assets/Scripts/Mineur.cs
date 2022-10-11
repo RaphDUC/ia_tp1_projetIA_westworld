@@ -27,7 +27,7 @@ public class Mineur : MonoBehaviour
     //above this value a miner is sleepy
     public int TirednessThreshold = 5;
     //above this value a miner is hungry
-    public int HungernessThreshold = 5;
+    public int HungernessThreshold = 30;
 
     //how many nuggets the miner has in his pockets
     private int m_iGoldCarried = 0;
