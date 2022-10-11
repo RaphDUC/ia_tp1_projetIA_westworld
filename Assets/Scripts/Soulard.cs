@@ -83,5 +83,9 @@ public class Soulard : MonoBehaviour
         return m_name;
     }
 
+     void TimeForBender(){
+        this.SetState(SoulardOwnedStates.currentState.BenderWithMiner);
+     }
+
 
 }

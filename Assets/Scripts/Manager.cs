@@ -69,6 +69,21 @@ public class Manager : MonoBehaviour
         Debug.Log("Mineur à la maison");
         femme.SendMessage("Mineur_Maison");
 
+    case 2:
+        Debug.Log("Mineur cherche soulard");
+
+                if(soulard.GetCurrentLocation()== Location.currentLocation.saloon)
+                {
+                    soulard.SendMessage("TimeForBender");
+                    mineur.SetReadyToBender(true);
+                }
+                else
+                {
+                    mineur.SetReadyToBender(false);
+                }
+
+
+
         break;
 
       }

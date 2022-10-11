@@ -39,6 +39,8 @@ public class Mineur : MonoBehaviour
     //the higher the value, the more hungry the miner
     private int m_iHunger = 0;
 
+    private bool m_readytobender = false;
+
     Location.currentLocation m_Location;
     MineurOwnedStates.currentState m_State;
 
@@ -154,6 +156,12 @@ public class Mineur : MonoBehaviour
 
     }
 
+    public void ResetThirst()
+    {
+        m_iThirst =0;
+
+    }
+
     public void IncreaseHunger()
     {
         m_iHunger += 1;
@@ -188,6 +196,21 @@ public class Mineur : MonoBehaviour
         }
         return false;
     }
+
+     public void SetReadyToBender(bool val)
+    {
+        this.m_readytobender = val;
+    }
+
+    public bool ReadyToBender()
+    {
+        if (m_readytobender)
+        {
+            return true;
+        }
+        return false;
+    }
+
     public void setmanager(Manager manager)
     {
         this.manager = manager;

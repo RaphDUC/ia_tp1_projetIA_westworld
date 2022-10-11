@@ -248,16 +248,29 @@ public class MineurOwnedStates : MonoBehaviour
             //    NO_ADDITIONAL_INFO);
         }
 
+        manager.SendMessage("MessageMineurOwnedStates",2);
 
-        pMiner.BuyAndDrinkAWhiskey();
+        if (pMiner.ReadyToBender())
+        {
+             Debug.Log(pMiner.getName() + ": " + "Hoi Phil ! Still drinkin' right there ?");
+            pMiner.SetState(currentState.Bender);
 
-        Debug.Log(pMiner.getName() + ": " + "That's mighty fine sippin' liquer");
+        }
+        else
+        {
+            pMiner.BuyAndDrinkAWhiskey();
 
-        Debug.Log(pMiner.getName() + ": " + "Leaving the saloon, feelin' good"); 
+            Debug.Log(pMiner.getName() + ": " + "That's mighty fine sippin' liquer");
+
+            Debug.Log(pMiner.getName() + ": " + "Leaving the saloon, feelin' good"); 
 
 
 
-        pMiner.SetState(currentState.GoHomeAndSleepTilRested);
+            pMiner.SetState(currentState.GoHomeAndSleepTilRested);
+        }
+
+
+        
 
 
 
@@ -322,12 +335,16 @@ public class MineurOwnedStates : MonoBehaviour
 
         //two cases : i can be sober and then work... or i can be as drunk as Phil... Randomly !
 
+        
+
         float probability = Random.Range(0.0f, 100.0f);
         
 
 
         if (probability <=50)
         {
+            pMiner.SetAlcooled(false);
+
             pMiner.SetState(currentState.EnterMineAndDigForNugget);
 
         }
@@ -343,7 +360,7 @@ public class MineurOwnedStates : MonoBehaviour
 
 
 
-        if (pMiner.Alcooled())
+        if (!pMiner.Alcooled())
         {
             Debug.Log(pMiner.getName() + ": " + "All right, thanks! Enough drinkin', back to work now !");
 
