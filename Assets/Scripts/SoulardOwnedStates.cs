@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class SoulardOwnedStates : MonoBehaviour
 {
+
+     public Soulard pDrunken;
+    public Manager manager;
+
     public enum currentState
     {
 
@@ -31,7 +35,7 @@ public class SoulardOwnedStates : MonoBehaviour
     //------------------------------------------------------------------------methods for GoHomeAndSleepTilRested
 
 
-    void GoHomeAndSleepTilThirsty(Soulard pDrunken)
+    void GoHomeAndSleepTilThirsty()
     {
         if (pDrunken.GetCurrentLocation() != Location.currentLocation.drunken_house)
         {
@@ -85,7 +89,7 @@ public class SoulardOwnedStates : MonoBehaviour
 
 
 
-    void DrinkWhiskeyAtWill(Soulard pDrunken)
+    void DrinkWhiskeyAtWill()
     {
         if (pDrunken.GetCurrentLocation() != Location.currentLocation.saloon)
         {
@@ -130,7 +134,7 @@ public class SoulardOwnedStates : MonoBehaviour
 
 
 
-    void BenderWithMiner(Soulard pDrunken)
+    void BenderWithMiner()
     {
         //if miner is here, invite him to drink and tchat
 

@@ -7,7 +7,7 @@ public class Manager : MonoBehaviour
 
     public Mineur mineur;
     public Femme femme;
-    Soulard soulard = new Soulard();
+    public Soulard soulard;
     public Manager m;
 
 
@@ -15,10 +15,11 @@ public class Manager : MonoBehaviour
     void Start()
     {
         mineur.setmanager(this);
+        soulard.setmanager(this);
         femme.SetManager(this);
 
         mineur.SetState(MineurOwnedStates.currentState.EnterMineAndDigForNugget);
-
+        soulard.SetState(SoulardOwnedStates.currentState.DrinkWhiskeyAtWill);
 
         //femme.SetState(MineurOwnedStates.currentState.EnterMineAndDigForNugget);
 
